@@ -1,0 +1,35 @@
+﻿
+In C# 7.0, you can now have your helper function defined with in the method itself. The local function can access all the local variables, and can also make use of lambda expression or even async-await. However, They aren’t available outside though.
+
+In case of Anonymous Functions, we cannot use 
+- Params
+- ref or Out variables.
+- Generics	
+
+But Local Functions supports all these above.
+
+
+
+you can have multiple local functions with in a method and you can call them internally as like another method.
+ Nested Local function =Local function can also contain another local function 
+ static void Main(string[] args)
+{
+	int val = 100;
+	int MyLocalFunction(int value1, int value2)
+	{
+		return val + value1 + value2;
+	}
+	int AnotherLocalFunction(int value1)
+	 {
+		int GetRandomValues()
+		{
+		  return new Random().Next(100);
+		}
+       return MyLocalFunction(GetRandomValues(), GetRandomValues()) + value1;
+     }
+Console.WriteLine(MyLocalFunction(10, 10));
+Console.WriteLine(AnotherLocalFunction(110));
+}
+
+
+You have to keep in mind, Local Function – are just like a function and even though they are in between your method execution cycle, they won’t invoke unless you call them explicitly.

@@ -1,0 +1,106 @@
+﻿In C#, we often used Out parameter,  as like call by reference, mostly when we want to return multiple values from a method. Whenever we call a method with an Out parameter, we must have to declare that variable first, before we use it.  Now, with C# 7.0, we can directly declare the Out Variable and you don’t need to initialize it separately.
+
+Consider the following example, where we have used the Out as a parameter for the tempText, and We have initialized it first before we pass it as Out Parameter.
+ static void Main(string[] args)
+	{
+		string tempText;
+		TestMethod(out tempText);
+	}
+static void TestMethod(out string strName)
+	{
+	   strName = "Out variable";
+	}
+
+	Now, in C# 7.0, declare it right at the point when you need it. As shown in the below example, TestMethod() call made with direct declaration of an out variable.
+
+	static void Main(string[] args)
+		{
+		   TestMethod(out string tempText);
+		}
+	static void TestMethod(out string strName)
+	{
+	    strName = "Out variable";
+	}
+	At this point of time, If you try to initialize the ‘tempText’, you will get following error – “A local variable or function named ‘tempText’ is already defined in the scope.”
+
+	We have all seen, one of the very frequent uses of the Out parameter was Converts the string representation of a number. With the help of out variable, now we can directly declare like below.
+	
+bool success = int.TryParse(Console.ReadLine(), out int result);
+
+
+
+ public ActionResult Index()
+        {
+            int m = 100, n = 25;
+            Program obj = new Program();
+
+            int p = 0, q = 0;
+            // below p and q will be used to capture the values that Math1 method will return so they are declared with ref keyword.
+            // and also they are initialized above to zero.
+             obj.Math1(m, n, ref p, ref q); 
+
+             // here during calling the method, we need to use ref keyword, because while 
+            //declaration of the method we used the ref keyword also.
+            // bcoz ref is used, these initialized value of 0 will go to the calling method Math1 as is,
+           
+            ViewBag.p = p;
+            ViewBag.q = q;
+
+
+            int x = 0, y = 0;
+            // but in case of out, these initialized values of 0 will not go to the calling method Math2, 
+            // so the out parameters of math2 method must be assigned the values before the control leaves the Math2 method.
+            // Since, these initialized values of 0 will not go to the calling function, the code will work even if we dont
+            // initialize x and y here... i.e we can simple use.
+            // int x, y;  
+            // but ref varialbes needs to be initialized like above like p and q.
+            // since out variables x and y are not carrying any values to the calling methods, there is no need to 
+            // separately declare them like above, i.e after c#6.0 we can declare them inline in the method itself like below.
+            //  obj.Math2(m, n, out int x, out int y);
+
+            obj.Math2(m, n, out x, out y);
+            ViewBag.x = x;
+            ViewBag.y = y;
+
+
+            return View();
+        }
+
+
+    }
+
+    public class Program {
+        public void Math1(int a, int b, ref int c, ref int d)
+        {
+            // "a" and b are input parameters of the method. and c and d parameters will take values out of the method.
+            c = a + b;
+            d = a * b;
+        }
+
+        public void Math2(int a, int b, out int c, out int d)
+        {
+            // "a" and b are input parameters of the method. and c and d parameters that will take values out of the method.
+            c = a + b;
+            d = a * b;
+        }
+    }
+}
+
+
+/*
+ Using out-parameters has several disadvantages:
+
+    It cannot be used for async-methods
+    You have to declare the parameters upfront (and you can’t use var, you have to include the type)
+
+
+    */
+
+
+
+
+
+
+
+
+
