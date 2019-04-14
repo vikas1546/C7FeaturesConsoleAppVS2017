@@ -97,7 +97,24 @@ bool success = int.TryParse(Console.ReadLine(), out int result);
     */
 
 
+	We usually use out variables when we use one of the TryParse method variants. Before, when we wanted to use TryParse we first had to define those variables.
 
+That is not the case anymore, we can now directly declare it where we are passing it as a parameter:
+
+// Out variables
+
+// Old way
+int parsedOld;
+string parseMeOld = "222224";
+
+int.TryParse(parseMeOld, out parsedOld);
+Console.WriteLine(parsedOld);
+
+// New way       
+string parseMe = "3115";
+
+int.TryParse(parseMe, out int parsed);
+Console.WriteLine(parsed);
 
 
 

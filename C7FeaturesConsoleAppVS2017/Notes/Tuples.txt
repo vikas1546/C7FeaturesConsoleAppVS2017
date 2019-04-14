@@ -1,0 +1,75 @@
+﻿
+What are Tuples
+
+Tuples are used to bundle the related values together without having to create a specific type to hold them.
+
+Life without Tuples
+Previously, we used different ways to return more than 1 value from a method which was time-consuming and difficult. Some of them are listed below -
+
+    Out parameters
+    Using arrays
+    System.Tupels
+    Anonymous types
+
+Why we need Tuples
+ 
+Tuples are used to return more than one values from a method. 
+
+Tuples in C# 7
+
+A tuple is an finite ordered list of values, of possibly different types, which is used to bundle related values together without having to create a specific type to hold them. var t = Tally(values);
+
+
+
+public Tuple<int,int> Math1(int a, int b)
+        {
+            int c = a + b;
+            int d = a * b;
+            Tuple<int, int> mytuple = Tuple.Create(c, d);
+            return mytuple;
+        }
+
+        public ActionResult Index()
+        {
+            Tuple<int, int> obj = this.Math1(25, 100);
+            ViewBag.Sum = "Sum is " + obj.Item1;
+            ViewBag.Product = "Product is " + obj.Item2;
+            return View();
+        }
+
+
+		Tuples are a temporary grouping of values. You could compare a Tuple to a POCO-class, but instead of defining it as a class you can define it on the fly. The following is an example of such a class:
+
+class PropertyBag 
+{ 
+    public int Id {get; set;} 
+    public string Name {get; set;} 
+} 
+var myObj = new PropertyBag { Id = 1, Name = "test};
+In the above example it wasn’t really necessary to name the concept we’re working with as it is probably a temporary structure that doesn’t need naming. Tuples are a way of temporarily creating such structures on the fly without the need to create classes
+
+
+
+Tuples
+
+It is quite common to return more than one value from a method and sometimes you don’t need or don’t want to use classes and objects because that’s just too much for the given purpose. Using out parameters can get quite ugly and they do not work with async methods. And you probably don’t want to use dynamic or ExpandoObject.
+
+Tuples in C# 7 can now have multiple parameters, not only two like before.  We use parentheses and inside of them types to denote the return type which tuple represents.
+   
+   static void Main()
+        {
+            List<int> numberslist = new List<int> { 3, 5, 11, 4, 7 };
+            var result = GetLowestHighest(numberslist);
+
+            Console.WriteLine(result.Item1); // ugly?
+            Console.WriteLine(result.Item2); // yeah, ugly..
+            Console.ReadLine();
+            
+        }
+
+        private static (int, int) GetLowestHighest(IReadOnlyCollection<int> numbers)
+        {
+            int lowest = numbers.Min(n => n);
+            int highest = numbers.Max(n => n);
+            return (lowest, highest);
+        }
