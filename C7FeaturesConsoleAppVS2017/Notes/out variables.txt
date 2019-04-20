@@ -1,6 +1,9 @@
-﻿In C#, we often used Out parameter,  as like call by reference, mostly when we want to return multiple values from a method. Whenever we call a method with an Out parameter, we must have to declare that variable first, before we use it.  Now, with C# 7.0, we can directly declare the Out Variable and you don’t need to initialize it separately.
+﻿In C#, we often used Out parameter,  as like call by reference, mostly when we want to return multiple values from a method. 
+ Whenever we call a method with an Out parameter, we must have to declare that variable first, before we use it.  Now, with C# 
+ 7.0, we can directly declare the Out Variable and you don’t need to initialize it separately.
 
-Consider the following example, where we have used the Out as a parameter for the tempText, and We have initialized it first before we pass it as Out Parameter.
+Consider the following example, where we have used the Out as a parameter for the tempText, and We have initialized it first 
+before we pass it as Out Parameter.
  static void Main(string[] args)
 	{
 		string tempText;
@@ -11,7 +14,9 @@ static void TestMethod(out string strName)
 	   strName = "Out variable";
 	}
 
-	Now, in C# 7.0, declare it right at the point when you need it. As shown in the below example, TestMethod() call made with direct declaration of an out variable.
+	
+	Now, in C# 7.0, declare it right at the point when you need it. As shown in the below example, TestMethod() call made 
+	with direct declaration of an out variable.
 
 	static void Main(string[] args)
 		{
@@ -21,10 +26,13 @@ static void TestMethod(out string strName)
 	{
 	    strName = "Out variable";
 	}
-	At this point of time, If you try to initialize the ‘tempText’, you will get following error – “A local variable or function named ‘tempText’ is already defined in the scope.”
+	At this point of time, If you try to initialize the ‘tempText’, you will get following error – “A local variable or 
+	function named ‘tempText’ is already defined in the scope.”
 
-	We have all seen, one of the very frequent uses of the Out parameter was Converts the string representation of a number. With the help of out variable, now we can directly declare like below.
+	We have all seen, one of the very frequent uses of the Out parameter was Converts the string representation of a number. 
+	With the help of out variable, now we can directly declare like below.
 	
+
 bool success = int.TryParse(Console.ReadLine(), out int result);
 
 
@@ -35,7 +43,8 @@ bool success = int.TryParse(Console.ReadLine(), out int result);
             Program obj = new Program();
 
             int p = 0, q = 0;
-            // below p and q will be used to capture the values that Math1 method will return so they are declared with ref keyword.
+     
+     // below p and q will be used to capture the values that Math1 method will return so they are declared with ref keyword.
             // and also they are initialized above to zero.
              obj.Math1(m, n, ref p, ref q); 
 
