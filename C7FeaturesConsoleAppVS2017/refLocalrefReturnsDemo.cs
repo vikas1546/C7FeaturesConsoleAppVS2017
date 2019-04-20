@@ -13,6 +13,7 @@ namespace C7FeaturesConsoleAppVS2017
             string[] speakersArray = { "Mahesh", "Suresh", "vikas", "Ganesh", "Dinesh" };
             //define a ref local variable like below
             // ref string speaker = ref speakersArray[2];  //it stores the reference of the second item. vikas gets stored
+            //commented above line to call the findspeaker method below
             ref string speaker = ref FindSpeaker(speakersArray, "Ganesh");
             // now we update the value of the ref local variable. It will update the speakersArray also.
             speaker += " Sharma";
